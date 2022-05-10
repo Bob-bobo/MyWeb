@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>服务评价</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="js/flexible.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+
+	<body>
+		<!--返回-->
+		<div class="top">
+			<i></i>服务评价
+		</div>
+		<!--服务评价-->
+		<div class="fwpj">
+			<span>服务评价</span>
+			<div class="star">
+				<span class="on"></span>
+				<span class="on"></span>
+				<span class="on"></span>
+				<span class="on"></span>
+				<span></span>
+			</div>
+		</div>
+		<div class="form-box">
+			<!--具体说说看-->
+			<div class="jtssk">
+				<p class="title"><span>-</span>具体说说看<span>-</span></p>
+				<div class="items">
+					<div class="item">
+						<span>专业性</span>
+						<div class="star">
+							<span class="on"></span>
+							<span class="on"></span>
+							<span class="on"></span>
+							<span class="on"></span>
+							<span></span>
+						</div>
+					</div>
+					<div class="item">
+						<span>服务态度</span>
+						<div class="star">
+							<span class="on"></span>
+							<span class="on"></span>
+							<span class="on"></span>
+							<span class="on"></span>
+							<span></span>
+						</div>
+					</div>
+					<div class="item">
+						<span>时效性</span>
+						<div class="star">
+							<span class="on"></span>
+							<span class="on"></span>
+							<span class="on"></span>
+							<span class="on"></span>
+							<span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--选择标签-->
+			<div class="xzbq">
+				<p class="title"><span>-</span>选择或自定义任一标签<span>-</span></p>
+				<div class="tags">
+					<ul>
+						<li class="on">专业性强</li>
+						<li class="on">态度谦和</li>
+						<li>声音甜美</li>
+						<li>速度很快</li>
+						<li>专业性强</li>
+						<li>态度谦和</li>
+						<li>声音甜美</li>
+						<li>速度很快</li>
+					</ul>
+				</div>
+			</div>
+			<div class="remark">
+				<textarea name="content" placeholder="说点什么吧..."></textarea>
+			</div>
+
+		</div>
+		<div class="submit">			
+			<button id="submit">提交</button>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+	// 评价打分
+	$('.star span').click(function(){
+		$(this).parent().find('span').removeClass('on')
+		var index = $(this).index();
+		$(this).parent().find('span').each(function(){
+			if(index<0){
+				return
+			}
+			$(this).addClass('on');
+			index--
+		})
+	})
+	// 标签选择
+	$('.tags ul li').click(function(){
+		$(this).toggleClass('on')
+	})
+	// 提交
+	$('#submit').click(function(){
+		alert("感谢评价")
+	})
+</script>

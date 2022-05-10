@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>书法教学辅助平台</title>
+    <script>
+        function showImg(file) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                document.getElementById('myImgxx').src = evt.target.result;
+            }
+            reader.readAsDataURL(file.files[0])
+        }
+        $(".select").jSelect();
+    </script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery.Jcrop.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/j-select.css" />
+    <script src="js/nicescroll/jquery-nicescroll.js"></script><!-- 使用了nicescroll插件美化下拉框的滚动条 -->
+    <script src="js/jquery-jSelect.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <style>
+        #back{
+            color: #6c71c4;
+        }
+    </style>
+</head>
+<body background="img/img.jpg">      <!--class="step1"-->
+<div class="container">
+    <div class="jumbotron" id="back">
+        <div id="step1">
+            <h1><i class="glyphicon glyphicon-camera"></i></h1>
+
+            <p class="lead">
+                上传一张正面的书法的照片
+                <i class="glyphicon glyphicon-question-sign help" data-placement="bottom"
+                   data-content="<img src='img/template.jpg' />" data-html="true"></i>
+            </p>
+            <img id="myImgxx" width="200" height="200">
+<!--            <figure id="myImgxx" class="not-ready">-->
+<!--                <video autoplay></video>-->
+<!--            </figure>-->
+            <form method="post" th:action="@{/score}" enctype="multipart/form-data">
+                <h4>选择你需要测试的字模板</h4>
+<!--                <select id="temp" name="temp">-->
+<!--                    <option></option>-->
+<!--                    <option></option>-->
+<!--                    <option></option>-->
+<!--                </select>-->
+                <select id="city" name="temp" class="select">
+                    <option value="锡">锡</option>
+                    <option value="风">风</option>
+                    <option value="杭">杭</option>
+                    <option value="国">国</option>
+                    <option value="党">党</option>
+                    <option value="秦">秦</option>
+                    <option value="颜">颜</option>
+                    <option value="卿">卿</option>
+                    <option value="庭">庭</option>
+                </select>
+                <input type="file" name="myImg" onchange="showImg(this)" class="btn"><br><br>
+                <input type="submit" value="进行评分" class="btn btn-lg btn-success">
+            </form>
+<!--            <button class="btn btn-lg btn-success" disabled id="takePicture">拍照</button>-->
+        </div>
+    </div>
+
+    <div class="header">
+        <h3 class="text-muted">书法教学辅助平台</h3>
+    </div>
+</div>
+<!-- /container -->
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/vendor/modernizr.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.Jcrop.js"></script>
+<!--<script src="js/vendor/glfx.min.js"></script>-->
+<script src="js/main.js"></script>
+
+
+
+
+</body>
+</html>
