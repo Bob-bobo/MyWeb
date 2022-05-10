@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/lq-score.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/lq-score.min.js"></script>
+    <title>评分界面</title>
+    <script th:inline="javascript">
+        $(function () {
+            $("#demo1").lqScore({
+                $tipEle: $("#tip1"),
+                tips: "default",
+                score: [[${value0}]]
+                //如果需要设置后还能评分，请添加[isReScore:true]属性
+            });
+            $("#demo2").lqScore({
+                $tipEle: $("#tip2"),
+                tips: "default",
+                score: [[${value1}]]
+            });
+            $("#demo3").lqScore({
+                $tipEle: $("#tip3"),
+                tips: "default",
+                score: [[${value2}]]
+            });
+            $("#demo4").lqScore({
+                $tipEle: $("#tip4"),
+                tips: "default",
+                score: [[${value7}]]
+                //如果需要设置后还能评分，请添加[isReScore:true]属性
+            });
+            $("#demo5").lqScore({
+                $tipEle: $("#tip5"),
+                tips: "default",
+                score: [[${value8}]]
+            });
+            $("#demo8").lqScore({
+                isReScore: true//允许重新评分
+            });
+        });
+    </script>
+</head>
+
+<body background="img/bac.png">
+    <div id="root">
+        <!------------------------demo3-------------------------->
+        <h1>模板字体为：颜体  [[${word}]]</h1>
+        <div>
+            <p><b>测：</b>字体字形&nbsp;&nbsp;&nbsp;<span class="note">注：主要从字体的转角以及收边进行主要评价</span></p>
+            <div class="myapp-score">
+                <div id="demo1">
+                </div>
+                <div class="myapp-tip">
+                    <span id="tip1" class="lq-score-tip"></span>
+                </div>
+            </div>
+        </div>
+        <!------------------------------------------------------->
+        <hr />
+        <div>
+            <p><b>测：</b>字体框架&nbsp;&nbsp;&nbsp;<span class="note">注：主要从字体的框架结构判断字体是否偏转</span></p>
+            <div class="myapp-score">
+                <div id="demo2">
+                </div>
+                <div class="myapp-tip">
+                    <span id="tip2" class="lq-score-tip"></span>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <hr />
+        <div>
+            <p><b>测：</b>字体骨架&nbsp;&nbsp;&nbsp;<span class="note">注：主要抽离字帖的骨架来判断字帖是否有骨架的搭配不平衡</span></p>
+            <div class="myapp-score">
+                <div id="demo3">
+                </div>
+                <div class="myapp-tip">
+                    <span id="tip3" class="lq-score-tip"></span>
+                </div>
+            </div>
+        </div>
+        <!----->
+        <div>
+            <p><b>测：</b>规则评分&nbsp;&nbsp;&nbsp;<span class="note">注：参考《中小学书法指导纲要》得分总结</span></p>
+            <div class="myapp-score">
+                <div id="demo4">
+                </div>
+                <div class="myapp-tip">
+                    <span id="tip4" class="lq-score-tip"></span>
+                </div>
+            </div>
+        </div>
+        <!------------------------------------------------------->
+<!--        <hr />-->
+
+<!--        <h5>0°翻转iou值为：[[${value3}]]  -45°翻转iou值为：[[${value4}]]  45°翻转iou值为：[[${value5}]]  90°翻转iou值为：[[${value6}]]</h5>-->
+
+<!--        <hr />-->
+        <div>
+            <h3>[[${remark0}]]</h3>
+            <h3>[[${remark1}]]</h3>
+            <h3>[[${remark2}]]</h3>
+        </div>
+
+        <div>
+            <p><b>测：</b>机器评分&nbsp;&nbsp;&nbsp;<span class="note">注：参考字体巴氏距离、相关性和卡方得分</span></p>
+            <div class="myapp-score">
+                <div id="demo5">
+                </div>
+                <div class="myapp-tip">
+                    <span id="tip5" class="lq-score-tip"></span>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <hr />
+        <!----->
+
+
+
+        <div>
+            <p><b>反馈：</b>对本次服务的整体评价&nbsp;&nbsp;&nbsp;<span class="note">注：每次评价都会作为一次系统升级的主要目标</span></p>
+            <div class="myapp-score">
+                <div id="demo8">
+                </div>
+            </div>
+        </div>
+        <!------------------------------------------------------->
+        <hr />
+        <form method="get" th:action="@{/}">
+            <input type="submit" value="继续测评" class="btn btn-lg btn-success">
+        </form>
+    </div>
+</body>
+
+</html>
