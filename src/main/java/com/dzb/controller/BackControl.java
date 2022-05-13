@@ -48,6 +48,10 @@ public class BackControl {
         return "register";
     }
 
+    @GetMapping("/admin")
+    public String loginAdmin(){
+        return "";
+    }
 
     @PostMapping(value = "/score",  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String score(@RequestParam(value = "myImg",required = false)MultipartFile file,
@@ -99,7 +103,7 @@ public class BackControl {
             System.out.println("hash1"+hash.get(0));
             System.out.println("hash2"+hash.get(1));
             System.out.println("hash3"+hash.get(2));
-            Integer[] scores = {Integer.valueOf(hash.get(0).substring(0,1)), Integer.valueOf(hash.get(1).substring(0,1)), Integer.valueOf(hash.get(2).substring(0,1))};
+            Float[] scores = {Float.valueOf(hash.get(0).substring(0,3)), Float.valueOf(hash.get(1).substring(0,2)), Float.valueOf(hash.get(2).substring(0,2))};
             for (Integer i:hash.keySet()){
                 Float f = Float.parseFloat(hash.get(i).substring(0,3))/2;
                 if (i >=3 && i < 7){
@@ -121,7 +125,7 @@ public class BackControl {
         return "score";
     }
 
-    public static String comment(Integer s, String pin, Integer i){
+    public static String comment(Float s, String pin, Integer i){
         String[] eights = {"画龙点睛","十分显著","非常棒","转折有力","心情舒畅"};
         String[] six = {"还算不错","可以再沉住气","离优秀差点点","进步极大","优化显著"};
         String[] fours = {"平平无奇","进步还是有","再加把劲而","多去思考","再多沉心练习"};
@@ -131,7 +135,7 @@ public class BackControl {
         if (s > 8){
             return  "在"+pin+"方面……表现比较优秀……在字体整体中……起到了"+eights[i]+"的作用";
         }else if (s > 6){
-            return  "在"+pin+"方面……达到了良好水平……放眼到整个汉字……总感觉"+six[i];
+            return  "在"+pin+"方面……达到了良好水平……放眼到整个汉字……总体感觉"+six[i];
         }else if (s > 4){
             return  "在"+pin+"方面……"+fours[i]+"……纵观整体还有很大发展空间";
         }else {

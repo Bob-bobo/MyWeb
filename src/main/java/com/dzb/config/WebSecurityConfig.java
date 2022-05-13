@@ -64,11 +64,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/index","/aboutme","/archives","/friendlylink","/tags","/update","/categories","/test","/","/calligraphy")
+            .antMatchers("/login","/register")
                 .permitAll()
-                .antMatchers("/editor","/user").hasAnyRole("USER")
-                .antMatchers("/ali","/mylove").hasAnyRole("ADMIN")
-                .antMatchers("/superadmin","/myheart","/today","/yesterday").hasAnyRole("SUPERADMIN")
+                .antMatchers("/editor","/user","/","/calligraphy","/score").hasAnyRole("USER")
+                .antMatchers("/teacher").hasAnyRole("ADMIN")
+                .antMatchers("/admin").hasAnyRole("SUPERADMIN")
                 .and()
                 .formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/")
                 .and()

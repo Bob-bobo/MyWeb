@@ -15,7 +15,7 @@ public class testNum {
 //            returnStr.append("\\u").append(Integer.toString(chars[i], 16));
 //        }
 //        System.out.println(returnStr);
-        String s = "8.665170991996119";
-        System.out.println(Integer.valueOf(s.substring(0,1)));
+        String s = "18.665170991996119";
+        System.out.println(Float.valueOf("10.")>8);
     }
 }
