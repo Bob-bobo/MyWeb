@@ -28,7 +28,7 @@ public interface UserService {
      * @param phone
      * @return
      */
-    int findUseridByPhone(String phone);
+    int finduser_idByPhone(String phone);
 
     /**
      * 通过手机号查询用户

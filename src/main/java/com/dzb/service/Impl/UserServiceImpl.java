@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int findUseridByPhone(String phone) {
+    public int finduser_idByPhone(String phone) {
         return 0;
     }
 
@@ -80,8 +80,8 @@ public class UserServiceImpl implements UserService {
         user.setAvatar("https://mybobbucket.oss-cn-beijing.aliyuncs.com/myweb/userAvatar/"+r.nextInt(13)+".jpg");
 
         userMapper.save(user);
-        int userid = userMapper.findUserIdByPhone(user.getPhone());
-        insertRole(userid, RoleConstant.ROLE_USER);
+        int user_id = userMapper.finduser_idByPhone(user.getPhone());
+        insertRole(user_id, RoleConstant.ROLE_USER);
 
         return DataMap.success();
     }
@@ -110,10 +110,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isSuperAdmin(String phone) {
-        int userid = userMapper.findUserIdByPhone(phone);
-        List<Object> roleids = userMapper.findRoleIdByUserId(userid);
+        int user_id = userMapper.finduser_idByPhone(phone);
+        List<Object> role_ids = userMapper.findrole_idByuser_id(user_id);
 
-        for (Object i : roleids){
+        for (Object i : role_ids){
             if ((int) i == 4){
                 return true;
             }
@@ -175,10 +175,10 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 增加用户角色权限
-     * @param userid
-     * @param roleid
+     * @param user_id
+     * @param role_id
      */
-    private void insertRole(int userid,int roleid){
-        userMapper.saveRole(userid,roleid);
+    private void insertRole(int user_id,int role_id){
+        userMapper.saveRole(user_id,role_id);
     }
 }

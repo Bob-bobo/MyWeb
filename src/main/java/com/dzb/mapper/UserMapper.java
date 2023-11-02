@@ -24,8 +24,8 @@ public interface UserMapper {
     })
     User getUsernameAndRolesByPhone(@Param("phone") String phone);
 
-    @Select("select r.role from user_tab u left join user_role_tab sru on u.id = sru.userId" +
-            " left join role_tab r on sru.roleId = r.id where phone = #{phone}")
+    @Select("select r.role from user_tab u left join user_role_tab sru on u.id = sru.user_id" +
+            " left join role_tab r on sru.role_id = r.id where phone = #{phone}")
     Role getRoleNameByPhone(String phone);
 
     @Select("select * from user_tab where phone = #{phone}")
@@ -44,14 +44,14 @@ public interface UserMapper {
     @Select("select * from user_tab where username = #{username}")
     User findUsernameByUsername(@Param("username") String username);
 
-    @Insert("insert into user_role_tab(userid,roleid) values (#{userid},#{roleid})")
-    void saveRole(@Param("userid") int userid,@Param("roleid") int roleid);
+    @Insert("insert into user_role_tab(user_id,role_id) values (#{user_id},#{role_id})")
+    void saveRole(@Param("user_id") int user_id,@Param("role_id") int role_id);
 
-    @Select("select roleid from user_role_tab where userid = #{userid}")
-    List<Object> findRoleIdByUserId(@Param("userid") int userid);
+    @Select("select role_id from user_role_tab where user_id = #{user_id}")
+    List<Object> findrole_idByuser_id(@Param("user_id") int user_id);
 
     @Select("select id from user_tab where phone = #{phone}")
-    int findUserIdByPhone(@Param("phone") String phone);
+    int finduser_idByPhone(@Param("phone") String phone);
 
     @Update("update user_tab set password = #{password} where phone = #{phone}")
     void updatePassword(@Param("phone") String phone,@Param("password") String password);

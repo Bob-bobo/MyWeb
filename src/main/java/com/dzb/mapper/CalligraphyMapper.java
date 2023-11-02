@@ -30,8 +30,8 @@ public interface CalligraphyMapper {
     Calligraphy findCalligraphyById(int id);
 
     //通过用户找其书法表
-    @Select("select * from calligraphy_tab where user_id = #{userId}")
-    List<Calligraphy> findCalligraphiesByUserId(int userId);
+    @Select("select * from calligraphy_tab where user_id = #{user_id}")
+    List<Calligraphy> findCalligraphiesByuser_id(int user_id);
 
     //通过id找书法表标题
     @Select("select title,category from calligraphy_tab where id = #{id}")

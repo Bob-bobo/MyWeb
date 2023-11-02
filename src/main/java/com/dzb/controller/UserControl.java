@@ -52,10 +52,10 @@ public class UserControl {
             TimeUtil timeUtil = new TimeUtil();
             File file = fileUtil.base64ToFile(filePath,img,timeUtil.getLongTime() + strFileExtendName);
             String url = fileUtil.uploadFile(file,"user/avatar/username");
-            int userid = userService.findIdByUsername(username);
-            userService.updateAvatarUrlById(url,userid);
+            int user_id = userService.findIdByUsername(username);
+            userService.updateAvatarUrlById(url,user_id);
 
-            DataMap data = userService.getAvatarUrl(userid);
+            DataMap data = userService.getAvatarUrl(user_id);
             return JsonResult.build(data).toJSON();
         }catch (Exception e){
             log.error("Upload head picture exception",e);

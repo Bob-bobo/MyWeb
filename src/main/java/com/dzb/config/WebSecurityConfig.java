@@ -2,6 +2,7 @@ package com.dzb.config;
 
 import com.dzb.service.security.CustomUserServiceImpl;
 import com.dzb.utils.MD5Util;
+import com.dzb.utils.SHAUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,30 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     /**
-     * 配置的是认证信息
-     * AuthenticationManagerBuilder这个类是AuthenticationManager的建造者
-     * @param auth
-     * @throws Exception
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService())
-            //启动MD5加密
-            .passwordEncoder(new PasswordEncoder() {
-                MD5Util md5Util = new MD5Util();
-                @Override
-                public String encode(CharSequence rawPassword) {
-                    return md5Util.encode((String) rawPassword);
-                }
-
-                @Override
-                public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                    return encodedPassword.equals(encode(rawPassword));
-                }
-            });
-    }
-
-    /**
      * 配置Security认证策略，每个模块配置使用and结尾
      * 其中authorizeRequests配置路径拦截，表明路径访问所对应的权限，角色，认证信息
      * formLogin对应表单认证的相关配置
@@ -63,8 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-            .antMatchers("/login","/register")
+                .authorizeRequests()
+                .antMatchers("/login","/register")
                 .permitAll()
                 .antMatchers("/editor","/user","/","/calligraphy","/score").hasAnyRole("USER")
                 .antMatchers("/teacher").hasAnyRole("ADMIN")
@@ -78,4 +55,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.csrf().disable();
     }
+
+    /**
+     * 配置的是认证信息
+     * AuthenticationManagerBuilder这个类是AuthenticationManager的建造者
+     * @param auth
+     * @throws Exception
+     */
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserService())
+            //启动MD5加密
+            .passwordEncoder(new PasswordEncoder() {
+                SHAUtil md5Util = new SHAUtil();
+                @Override
+                public String encode(CharSequence rawPassword) {
+                    return md5Util.SHA256Encrypt((String) rawPassword);
+                }
+
+                @Override
+                public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                    return encodedPassword.equals(encode(rawPassword));
+                }
+            });
+    }
+
+
 }
